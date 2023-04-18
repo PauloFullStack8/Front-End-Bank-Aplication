@@ -14,3 +14,5 @@ Watch a demo of the Bank-transfer-website
 
 # what is it?
 "Basically, it is a responsive and interactive banking webpage that can be viewed on various devices, including large and small screens. It was created using React and TypeScript, and incorporates best practices for development.
+
+<img width="1440" alt="Captura de Tela 2023-04-18 às 11 16 12" src="https://user-images.githubusercontent.com/129458373/232821872-d0e053e0-e1c4-46d5-97b3-a19ed1e8abd0.png">
