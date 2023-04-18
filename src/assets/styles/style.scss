@@ -1,0 +1,362 @@
+// @import './vars';
+@import './reset';
+@import './functions';
+@import './media';
+
+// /. imports
+
+html,
+body {
+    font-size: #{$font-size}px;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #ECF7F3;
+    color: $dark-color;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+
+#root,
+.App {
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+}
+
+.main {
+    flex: 1 0 auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+// /. general styles
+
+.container {
+    max-width: useRem(1165); // 1145px
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 useRem(40);
+}
+
+.button {
+    background-color: $green-color;
+    padding: useRem(8) useRem(22);
+    color: $white-color;
+    font-weight: 500;
+    border-radius: useRem(20);
+    transition: all .25s ease-in-out;
+
+    &:hover {
+        color: $dark-color;
+    }
+}
+
+.warn {
+    position: absolute;
+    display: inline-block;
+    color: red;
+    font-size: useRem(13);
+}
+
+.warn-form {
+    left: useRem(3);
+    bottom: useRem(-20);
+}
+
+.section-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.text-loader {
+    display: inline-block;
+    font-size: 84px;
+    text-align: center;
+
+    span {
+        display: inline-block;
+        margin: 0 useRem(4);
+        animation: wave 1s infinite;
+
+        @for $i from 1 through 6 {
+            &:nth-child(#{$i+1}) {
+                animation-delay: #{$i*.1}s;
+            }
+        }
+    }
+}
+
+.text-loader-about {
+    margin: useRem(112) 0 useRem(100) 0;
+}
+
+@keyframes wave {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(useRem(14));
+    }
+}
+
+
+// /. reusable styles
+
+.about {
+    width: 100%;
+
+    &__wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 'content preview'
+            'users preview';
+        gap: useRem(40) useRem(10);
+        height: 100%;
+        padding: useRem(90) 0 0 0;
+    }
+
+    &__content {
+        grid-area: content;
+    }
+
+    &__peview {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        position: relative;
+        grid-area: preview;
+    }
+
+    &__title {
+        font-size: useRem(48);
+        font-weight: 700;
+        line-height: useRem(65);
+        color: $dark-color;
+
+        a {
+            color: $orange-color;
+        }
+    }
+
+    &__description {
+        font-size: useRem(15);
+        color: $gray-color;
+        line-height: useRem(26);
+        font-weight: 500;
+        margin: useRem(22) 0 useRem(30) 0;
+    }
+
+    &__users {
+        grid-area: users;
+        display: flex;
+        align-items: center;
+        gap: useRem(12);
+        padding-bottom: useRem(44);
+    }
+
+    &__users-list {
+        margin-right: useRem(12);
+    }
+
+    &__users-info {
+        font-weight: 500;
+        font-family: 'Roboto', sans-serif;
+        line-height: useRem(18.75);
+        color: $gray-color;
+
+        a {
+            color: $orange-color;
+        }
+    }
+}
+
+.callRequest-form {
+    position: relative;
+
+    &__input {
+        width: 100%;
+        border: none;
+        box-shadow: 0 useRem(20) useRem(30) rgba(222, 222, 222, 0.25);
+        border-radius: useRem(100);
+        background-color: $white-color;
+        padding: useRem(24) useRem(70) useRem(24) useRem(40);
+        outline: 1px solid transparent;
+
+        color: #A1A1A1;
+        font-weight: 400;
+        letter-spacing: useRem(0.5);
+
+        &:focus {
+            outline: 1px solid $orange-color;
+        }
+
+        &::placeholder {
+            font-size: useRem(16);
+            color: #A1A1A1;
+            font-weight: 400;
+            letter-spacing: useRem(0.5);
+        }
+    }
+
+    &__input.no-valid {
+        outline: 1px solid red;
+    }
+
+    &__label {
+        @extend .button;
+        display: inline-block;
+        padding: useRem(12) useRem(22);
+        margin-bottom: useRem(50);
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &__button {
+        position: absolute;
+        top: auto;
+        right: 0;
+        bottom: 0;
+        background-color: $green-color;
+        border-radius: 100%;
+        margin: useRem(4) useRem(5);
+        height: useRem(55);
+        width: useRem(55);
+        overflow: hidden;
+
+        &:disabled {
+            opacity: 0.6;
+
+            &:hover {
+                svg {
+                    stroke: $white-color;
+                }
+            }
+        }
+
+        &:hover {
+            svg {
+                stroke: $dark-color;
+            }
+        }
+
+        svg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all .25s ease-in-out;
+            stroke: $white-color;
+        }
+    }
+}
+
+.circle {
+    z-index: -1;
+    position: relative;
+    width: useRem(450);
+    height: useRem(450);
+    border: useRem(1) solid #E8E8E8;
+    border-radius: 100%;
+
+    &__center {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 10%;
+        width: useRem(280);
+        height: useRem(280);
+        background-color: $green-color;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+
+    &__background-img {
+        z-index: 2;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        overflow: hidden;
+        bottom: useRem(-3);
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    &__template {
+        outline: useRem(2) solid $white-color;
+        border-radius: 50%;
+
+        z-index: 2;
+        animation: spinAround 12s linear infinite;
+        overflow: hidden;
+
+        margin: auto;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        &:nth-child(1) {
+            width: useRem(30);
+            height: useRem(30);
+            animation-delay: -3s;
+        }
+
+        &:nth-child(2) {
+            width: useRem(60);
+            height: useRem(60);
+            animation-delay: -5s;
+        }
+
+        &:nth-child(3) {
+            width: useRem(40);
+            height: useRem(40);
+            animation-delay: -7s;
+        }
+
+        &:nth-child(4) {
+            width: useRem(50);
+            height: useRem(50);
+            animation-delay: -9s;
+        }
+
+        &:nth-child(5) {
+            width: useRem(30);
+            height: useRem(30);
+            animation-delay: -11s;
+        }
+    }
+
+    &__image {
+        object-fit: cover;
+        min-width: 100%;
+        min-height: 100%;
+    }
+}
+
+@keyframes spinAround {
+    0% {
+        transform: rotate(0deg) translate(calc(useRem(-450) / 2)) rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg) translate(calc(useRem(-450) / 2)) rotate(-360deg);
+    }
+}
