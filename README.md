@@ -11,3 +11,6 @@ Watch a demo of the Bank-transfer-website
 
 
 -->npm run eject: This is a one-way operation. Once you eject, you can't go back! 
+
+# what is it?
+"Basically, it is a responsive and interactive banking webpage that can be viewed on various devices, including large and small screens. It was created using React and TypeScript, and incorporates best practices for development.
